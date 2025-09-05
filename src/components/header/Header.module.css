@@ -1,0 +1,18 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+  background-image: url("../../../public/header-background.png");
+  background-size: contain;
+}
+
+.header h1 {
+  font-size: 3rem;
+  letter-spacing: 0.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -1,12 +1,21 @@
 'use server'
 
 export type Track = {
-    id: string;
+    id: number;
     title: string;
     link: string;
     duration: number;
     release_date: string;
     preview: string;
+    album: {
+          id: number,
+          title: string,
+          cover: string,
+          cover_small: string,
+          cover_medium: string,
+          cover_big: string,
+          cover_xl: string,
+      };
 }
 
 export default async function trackGet(trackCode: string): Promise<Track | null>{

@@ -1,9 +1,17 @@
-import tracksHomeGet from "@/actions/tracks-home-get";
-import HomeTracks from "@/components/home/HomeTracks";
+import topArtistsGet from "@/actions/top-artists-get";
+import topTracksGet from "@/actions/top-tracks-get";
+import TopArtists from "@/components/home/TopArtists";
+import TopTracks from "@/components/home/TopTracks";
 
 export default async function Home() {
-  const musics = await tracksHomeGet();
+  const topTracks = await topTracksGet();
+  const topArtits = await topArtistsGet();
 
-  if (!musics) return <p>Error</p>;
-  return <HomeTracks musics={musics} />;
+  if (!topTracks || !topArtits) return <p>Error</p>;
+  return (
+    <>
+      <TopTracks topTracks={topTracks} />
+      <TopArtists topArtists={topArtits}></TopArtists>;
+    </>
+  );
 }
