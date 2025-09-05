@@ -3,6 +3,7 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Aside from "@/components/aside/Aside";
+import MusicPlayer from "@/components/player/MusicPlayer";
 
 const QuicksandFont = Quicksand({
   variable: "--font-quicksand",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Header />
         <Aside />
         <main>{children}</main>
+        <MusicPlayer />
       </body>
     </html>
   );
