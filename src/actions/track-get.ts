@@ -1,5 +1,7 @@
 'use server'
 
+import { Artist } from "./top-artists-get";
+
 export type Track = {
     id: number;
     title: string;
@@ -16,6 +18,7 @@ export type Track = {
           cover_big: string,
           cover_xl: string,
       };
+  artist: Artist,
 }
 
 export default async function trackGet(trackCode: string): Promise<Track | null>{

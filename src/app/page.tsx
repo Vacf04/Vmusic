@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <>
       <TopTracks topTracks={topTracks} />
-      <TopArtists topArtists={topArtits}></TopArtists>;
+      <TopArtists topArtists={topArtits}></TopArtists>
     </>
   );
 }

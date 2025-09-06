@@ -1,0 +1,11 @@
+.topArtists {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 1rem;
+  padding-left: 0.5rem;
+}
+
+.topArtistsSection {
+  margin-top: 3rem;
+}

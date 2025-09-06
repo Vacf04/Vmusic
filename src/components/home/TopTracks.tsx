@@ -1,22 +1,17 @@
 "use client";
 import { Track } from "@/actions/track-get";
 import Image from "next/image";
+import MusicCard from "../music/MusicCard";
+import styles from "./TopTracks.module.css";
 
 export default function TopTracks({ topTracks }: { topTracks: Track[] }) {
   console.log(topTracks);
   return (
-    <section>
-      <ul>
+    <section className={styles.topTracksSection}>
+      <h1>As mais escutadas</h1>
+      <ul className={styles.topTracks}>
         {topTracks.map((track) => (
-          <li key={track.id}>
-            <h1>{track.title}</h1>
-            <Image
-              src={track.album.cover_big}
-              width={250}
-              height={250}
-              alt={track.album.title}
-            />
-          </li>
+          <MusicCard key={track.id} track={track} />
         ))}
       </ul>
     </section>
