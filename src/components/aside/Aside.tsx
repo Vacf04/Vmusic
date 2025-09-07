@@ -6,7 +6,9 @@ export default function Aside() {
   return (
     <aside className={styles.aside}>
       <header>
-        <span className={styles.titleAside}>Escute suas músicas favoritas</span>
+        <h1>
+          VMusic <BiMusic />
+        </h1>
       </header>
       <nav className={styles.menu}>
         <span className={styles.menuTitle}>Menu</span>

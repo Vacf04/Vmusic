@@ -23,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${QuicksandFont.variable} body`}>
-        <Header />
         <Aside />
         <main>{children}</main>
         <MusicPlayer />

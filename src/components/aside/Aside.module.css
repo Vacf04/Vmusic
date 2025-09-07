@@ -1,16 +1,15 @@
 .aside {
   margin: 0;
-  padding: 0;
-  height: 100vh;
+  height: calc(100vh - 9.75rem);
+  color: var(--color-white);
+  padding-right: 0;
+  border-radius: var(--border-radius);
 }
 
 .aside header {
-  height: 8rem;
-  display: flex;
-  align-items: center;
-  padding-left: 3rem;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--color-terciary);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
 
 .titleAside {
@@ -20,30 +19,51 @@
 }
 
 .menuTitle {
-  padding-left: 3rem;
-  margin-bottom: 0.5rem;
   display: block;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--color-secondary);
+  font-weight: 500;
 }
 
 .menu {
-  background-color: var(--color-primary);
+  background-color: var(--color-terciary);
   height: 100%;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
 .menu a {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 1rem;
-  padding-left: 4rem;
   transition: var(--transition);
+  padding: 0.25rem 2rem;
+  border-right: 0.25rem solid transparent;
+}
+
+.menu li {
+  margin-top: 1rem;
 }
 
 .menu a:hover {
-  background-color: var(--color-black);
-  color: var(--color-white);
+  color: var(--color-blue);
+  border-right-color: var(--color-blue);
+}
+
+.aside h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  padding-top: 2rem;
 }

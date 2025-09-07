@@ -4,8 +4,9 @@
   grid-template-columns: repeat(4, auto);
   gap: 1rem;
   padding-left: 0.5rem;
+  background-color: var(--color-terciary);
 }
 
 .topArtistsSection {
-  margin-top: 3rem;
+  color: var(--color-white);
 }

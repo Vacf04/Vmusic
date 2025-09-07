@@ -1,3 +1,6 @@
 .topTracks {
   margin-top: 1rem;
 }
+.topTracksSection {
+  color: var(--color-white);
+}
