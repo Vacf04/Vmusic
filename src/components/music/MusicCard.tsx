@@ -2,16 +2,20 @@
 import { Track } from "@/actions/track-get";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import styles from "./MusicCard.module.css";
+import { useMusic } from "@/context/MusicContext";
 
 export default function MusicCard({ track }: { track: Track }) {
-  const [musicPreview, setMusicPreview] = useState(track.preview);
-
-  const handleMusicClick = () => {};
+  const { setMusic, setIsPlaying } = useMusic();
 
   return (
-    <li onClick={handleMusicClick} className={styles.musicItem}>
+    <li
+      onClick={() => {
+        setMusic(track);
+        setIsPlaying(true);
+      }}
+      className={styles.musicItem}
+    >
       <Image
         src={track.album.cover_small}
         width={50}

@@ -9,6 +9,10 @@
   border-radius: var(--border-radius);
 }
 
+.musicItem img {
+  border-radius: var(--border-radius);
+}
+
 .duration {
   margin-left: auto;
 }
