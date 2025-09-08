@@ -5,7 +5,7 @@ import styles from "./TopArtists.module.css";
 
 export default function TopArtists({ topArtists }: { topArtists: Artist[] }) {
   return (
-    <section className={styles.topArtistsSection}>
+    <section className={`${styles.topArtistsSection} showRight`}>
       <h1>Os artistas mais escutados</h1>
       <ul className={styles.topArtists}>
         {topArtists.map((artist) => (

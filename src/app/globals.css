@@ -74,3 +74,16 @@ ol {
   grid-row: 2;
   background-color: var(--color-black);
 }
+
+@keyframes showRight {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+.showRight {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: forwards var(--transition) showRight;
+}
