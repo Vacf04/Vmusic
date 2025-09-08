@@ -32,7 +32,7 @@ export default function Aside() {
             </Link>
           </li>
           <li>
-            <Link href={`/artists`}>
+            <Link href={`/artistas`}>
               <BiUser />
               Artistas
             </Link>

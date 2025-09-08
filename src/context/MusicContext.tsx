@@ -28,10 +28,8 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const playOrPauseMusic = (audio: HTMLAudioElement) => {
     if (isPlaying) {
       audio.pause();
-      setIsPlaying(false);
     } else {
       audio.play();
-      setIsPlaying(true);
     }
   };
   const skipMusic = () => {};

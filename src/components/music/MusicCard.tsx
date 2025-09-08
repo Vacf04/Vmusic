@@ -6,13 +6,12 @@ import styles from "./MusicCard.module.css";
 import { useMusic } from "@/context/MusicContext";
 
 export default function MusicCard({ track }: { track: Track }) {
-  const { setMusic, setIsPlaying } = useMusic();
+  const { setMusic } = useMusic();
 
   return (
     <li
       onClick={() => {
         setMusic(track);
-        setIsPlaying(true);
       }}
       className={styles.musicItem}
     >

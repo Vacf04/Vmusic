@@ -2,18 +2,40 @@
 import { useMusic } from "@/context/MusicContext";
 import styles from "./MusicPlayer.module.css";
 import { BiPause, BiPlay, BiSkipNext, BiSkipPrevious } from "react-icons/bi";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function MusicPlayer() {
   const audio = useRef<HTMLAudioElement | null>(null);
-  const { music, playOrPauseMusic, isPlaying } = useMusic();
+  const [progress, setProgress] = useState(0);
+  const [totalDuration, setTotalDuration] = useState(0);
+  const { music, playOrPauseMusic, isPlaying, setIsPlaying } = useMusic();
+
+  const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
+    setProgress(e.currentTarget.currentTime);
+  };
+
+  const handleLoaded = () => {
+    if (audio.current) setTotalDuration(audio.current.duration);
+  };
+
+  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (audio.current) audio.current.currentTime = Number(e.target.value);
+  };
 
   if (!music) return null;
   return (
     <div className="musicPlayer">
-      <audio src={music.preview} ref={audio} autoPlay />
+      <audio
+        src={music.preview}
+        ref={audio}
+        onTimeUpdate={secondsUpdate}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onLoadedMetadata={handleLoaded}
+        autoPlay
+      />
       <div className={styles.player}>
         <div className={styles.mainData}>
           <Image
@@ -47,9 +69,31 @@ export default function MusicPlayer() {
             </button>
           </div>
           <div className={styles.duration}>
-            <p>{audio.current && Math.floor(audio.current.currentTime)}</p>
-            <div className={styles.durationLine}></div>
-            <p>00:30</p>
+            <p>{`00:${
+              Math.floor(progress).toString().length === 1
+                ? `0${Math.floor(progress)}`
+                : Math.floor(progress)
+            }`}</p>
+            <input
+              type="range"
+              name="duration"
+              id="duration"
+              className={styles.durationLine}
+              value={progress}
+              min={0}
+              onChange={handleTimeChange}
+              max={totalDuration}
+              style={
+                {
+                  "--timing": `${(progress / totalDuration) * 100}%`,
+                } as React.CSSProperties
+              }
+            />
+            <p>{`00:${
+              Math.floor(totalDuration).toString().length === 1
+                ? `0${Math.floor(totalDuration)}`
+                : Math.floor(totalDuration)
+            }`}</p>
           </div>
         </div>
         <div className={styles.volume}></div>
