@@ -1,7 +1,15 @@
 "use client";
 import { useMusic } from "@/context/MusicContext";
 import styles from "./MusicPlayer.module.css";
-import { BiPause, BiPlay, BiSkipNext, BiSkipPrevious } from "react-icons/bi";
+import {
+  BiPause,
+  BiPlay,
+  BiSkipNext,
+  BiSkipPrevious,
+  BiVolumeFull,
+  BiVolumeLow,
+  BiVolumeMute,
+} from "react-icons/bi";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,10 +18,15 @@ export default function MusicPlayer() {
   const audio = useRef<HTMLAudioElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
+  const [volume, setVolume] = useState(100);
   const { music, playOrPauseMusic, isPlaying, setIsPlaying } = useMusic();
 
   const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
     setProgress(e.currentTarget.currentTime);
+  };
+
+  const volumeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
+    setVolume(e.currentTarget.volume * 100);
   };
 
   const handleLoaded = () => {
@@ -24,6 +37,10 @@ export default function MusicPlayer() {
     if (audio.current) audio.current.currentTime = Number(e.target.value);
   };
 
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (audio.current) audio.current.volume = Number(e.target.value) / 100;
+  };
+
   if (!music) return null;
   return (
     <div className="musicPlayer">
@@ -31,6 +48,7 @@ export default function MusicPlayer() {
         src={music.preview}
         ref={audio}
         onTimeUpdate={secondsUpdate}
+        onVolumeChange={volumeUpdate}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onLoadedMetadata={handleLoaded}
@@ -96,7 +114,26 @@ export default function MusicPlayer() {
             }`}</p>
           </div>
         </div>
-        <div className={styles.volume}></div>
+        <div className={styles.volume}>
+          {volume >= 50 && <BiVolumeFull />}
+          {volume < 50 && volume > 1 && <BiVolumeLow />}
+          {volume <= 1 && <BiVolumeMute />}
+          <input
+            type="range"
+            name="duration"
+            id="duration"
+            className={styles.volumeLine}
+            min={0}
+            value={volume}
+            onChange={handleVolumeChange}
+            max={100}
+            style={
+              {
+                "--timing": `${volume}%`,
+              } as React.CSSProperties
+            }
+          />
+        </div>
       </div>
     </div>
   );
