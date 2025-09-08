@@ -91,13 +91,23 @@
   cursor: pointer;
 }
 
-.durationLine::-webkit-slider-runnable-track {
+.volumeLine {
+  width: 5rem;
+  position: relative;
+  appearance: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.durationLine::-webkit-slider-runnable-track,
+.volumeLine::-webkit-slider-runnable-track {
   background: var(--color-secondary);
   height: 0.5rem;
   border-radius: var(--border-radius);
 }
 
-.durationLine::-webkit-slider-thumb {
+.durationLine::-webkit-slider-thumb,
+.volumeLine::-webkit-slider-thumb {
   appearance: none;
   box-shadow: 0px 0px 0px 0.09rem transparent;
   background: transparent;
@@ -108,22 +118,23 @@
   position: relative;
   z-index: 2;
   left: 0.35rem;
-  bottom: 2;
 }
 
-.durationLine:hover::-webkit-slider-thumb {
+.durationLine:hover::-webkit-slider-thumb,
+.volumeLine:hover::-webkit-slider-thumb {
   -webkit-appearance: none;
   box-shadow: 0px 0px 0px 0.4rem #fff;
   background: #fff;
-  height: 0.85rem;
-  width: 0.85rem;
+  height: 0.5rem;
+  width: 0.5rem;
   cursor: pointer;
   border-radius: 50%;
   position: relative;
   z-index: 2;
 }
 
-.durationLine::before {
+.durationLine::before,
+.volumeLine::before {
   content: "";
   background-color: var(--color-white);
   position: absolute;
@@ -134,6 +145,14 @@
   border-radius: var(--border-radius);
 }
 
-.durationLine:hover::before {
+.durationLine:hover::before,
+.volumeLine:hover::before {
   background-color: var(--color-blue);
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
 }
