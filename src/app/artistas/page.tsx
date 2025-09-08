@@ -1,16 +1,12 @@
 import topArtistsGet from "@/actions/top-artists-get";
-import topTracksGet from "@/actions/top-tracks-get";
 import TopArtists from "@/components/home/TopArtists";
-import TopTracks from "@/components/home/TopTracks";
 
 export default async function Home() {
-  const topTracks = await topTracksGet();
   const topArtits = await topArtistsGet();
 
-  if (!topTracks || !topArtits) return <p>Error</p>;
+  if (!topArtits) return <p>Error</p>;
   return (
     <>
-      <TopTracks topTracks={topTracks} />
       <TopArtists topArtists={topArtits}></TopArtists>
     </>
   );

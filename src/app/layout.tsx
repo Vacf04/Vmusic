@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
+import Aside from "@/components/aside/Aside";
+import MusicPlayer from "@/components/player/MusicPlayer";
+import { MusicProvider } from "@/context/MusicContext";
 
-const RobotoFont = Roboto({
-  variable: "--font-roboto",
+const QuicksandFont = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
 });
 
@@ -19,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${RobotoFont.variable}`}>{children}</body>
+      <body className={`${QuicksandFont.variable} body`}>
+        <MusicProvider>
+          <Aside />
+          <main>{children}</main>
+          <MusicPlayer />
+        </MusicProvider>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,69 @@
+.aside {
+  margin: 0;
+  height: calc(100vh - 11.115rem);
+  color: var(--color-white);
+  padding-right: 0;
+  border-radius: var(--border-radius);
+}
+
+.aside header {
+  background-color: var(--color-terciary);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.titleAside {
+  display: block;
+  font-size: 1.5rem;
+  max-width: 15ch;
+}
+
+.menuTitle {
+  display: block;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.menu {
+  background-color: var(--color-terciary);
+  height: 100%;
+  padding-top: 2rem;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.menu a {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  transition: var(--transition);
+  padding: 0.25rem 2rem;
+  border-right: 0.25rem solid transparent;
+}
+
+.menu li {
+  margin-top: 1rem;
+}
+
+.menu a:hover {
+  color: var(--color-blue);
+  border-right-color: var(--color-blue);
+}
+
+.aside h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  padding-top: 2rem;
+}

@@ -1,0 +1,139 @@
+.player img {
+  border-radius: var(--border-radius);
+}
+
+.player {
+  color: var(--color-white);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  padding-left: 0.15rem;
+}
+
+.mainData {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.artist {
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.artist:hover {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.player button {
+  cursor: pointer;
+}
+
+.player .controls {
+  justify-self: center;
+}
+
+.player .volume {
+  justify-self: end;
+}
+
+.mainControls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.mainControls button {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  transition: var(--transition);
+}
+
+.mainControls button:hover {
+  color: var(--color-blue);
+}
+
+.duration {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+
+.duration p {
+  width: 2rem;
+}
+
+.duration p:nth-child(3) {
+  margin-left: -0.4rem;
+}
+
+.durationLine {
+  width: 25rem;
+  position: relative;
+  appearance: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.durationLine::-webkit-slider-runnable-track {
+  background: var(--color-secondary);
+  height: 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.durationLine::-webkit-slider-thumb {
+  appearance: none;
+  box-shadow: 0px 0px 0px 0.09rem transparent;
+  background: transparent;
+  height: 0rem;
+  width: 0rem;
+  cursor: pointer;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  left: 0.35rem;
+  bottom: 2;
+}
+
+.durationLine:hover::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-shadow: 0px 0px 0px 0.4rem #fff;
+  background: #fff;
+  height: 0.85rem;
+  width: 0.85rem;
+  cursor: pointer;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.durationLine::before {
+  content: "";
+  background-color: var(--color-white);
+  position: absolute;
+  height: 100%;
+  width: var(--timing);
+  top: 0;
+  left: 0;
+  border-radius: var(--border-radius);
+}
+
+.durationLine:hover::before {
+  background-color: var(--color-blue);
+}
