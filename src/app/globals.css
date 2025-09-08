@@ -31,7 +31,8 @@ ol {
   display: grid;
   grid-template-columns: 0.18fr 1fr;
   font-family: var(--font-quicksand);
-  overflow: hidden;
+  overflow-y: hidden;
+  height: 95vh;
   background-color: var(--color-black);
   padding: 0.5rem;
   gap: 0.5rem;
@@ -68,8 +69,7 @@ ol {
 
 .body .musicPlayer {
   width: 100%;
-  height: 6.4rem;
-  align-self: end;
+  height: 5.4rem;
   grid-column: 1 / -1;
   grid-row: 2;
   background-color: var(--color-black);
