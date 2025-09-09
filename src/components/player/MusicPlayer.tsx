@@ -23,6 +23,14 @@ export default function MusicPlayer() {
 
   const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
     setProgress(e.currentTarget.currentTime);
+    if (Math.floor(progress) === Math.floor(totalDuration)) {
+      setTimeout(() => {
+        if (audio.current) {
+          audio.current.currentTime = 0;
+          playOrPauseMusic(audio.current);
+        }
+      }, 1200);
+    }
   };
 
   const volumeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
@@ -116,8 +124,8 @@ export default function MusicPlayer() {
         </div>
         <div className={styles.volume}>
           {volume >= 50 && <BiVolumeFull />}
-          {volume < 50 && volume > 1 && <BiVolumeLow />}
-          {volume <= 1 && <BiVolumeMute />}
+          {volume < 50 && volume >= 1 && <BiVolumeLow />}
+          {volume < 1 && <BiVolumeMute />}
           <input
             type="range"
             name="duration"

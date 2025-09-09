@@ -46,6 +46,7 @@ ol {
   padding-top: 1.65rem;
   border-radius: var(--border-radius);
   background-color: var(--color-terciary);
+  color: var(--color-white);
 }
 
 .body main::-webkit-scrollbar {
