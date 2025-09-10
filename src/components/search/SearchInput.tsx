@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import MusicCard from "../music/MusicCard";
 import ArtistCard from "../artist/ArtistCard";
 import styles from "./SearchInput.module.css";
+import Loading from "../helper/Loading";
 
 export default function SearchInput() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -44,8 +45,7 @@ export default function SearchInput() {
         setArtists(artists);
         setAlbuns(albuns);
       } catch (e: unknown) {
-        if (e instanceof Error)
-          setError("Ocorreu um erro ao buscar os resultados.");
+        if (e instanceof Error) setError(e.message);
       } finally {
         setIsLoading(false);
       }
@@ -67,20 +67,23 @@ export default function SearchInput() {
       <form onSubmit={preventSubmit}>
         <input
           type="text"
-          name=""
-          id=""
+          name="search"
+          id="search"
+          placeholder="O que você quer ouvir ?"
           value={searchQuery}
           onChange={handleInputChange}
+          className={styles.input}
         />
       </form>
 
       <section className={styles.results}>
-        {isLoading && <p>Carregando resultados...</p>}
+        {isLoading && <Loading />}
         {error && <p>{error}</p>}
-        {!isLoading && !error && tracks && (
+        {!isLoading && !error && tracks && artists && albuns && (
           <>
             <h1>Músicas</h1>
             <ul>
+              {tracks.length <= 0 && <li>Nenhuma música encontrada.</li>}
               {tracks?.map((track) => (
                 <MusicCard key={track.id} track={track} />
               ))}
@@ -90,6 +93,7 @@ export default function SearchInput() {
             ))}
             <h1>Artistas</h1>
             <ul>
+              {artists.length <= 0 && <li>Nenhuma artista encontrado.</li>}
               {artists?.map((artist) => (
                 <ArtistCard key={artist.id} artist={artist} />
               ))}
