@@ -22,3 +22,11 @@
   outline: none;
   border-color: var(--color-blue);
 }
+
+.grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 1rem;
+  padding-left: 0.5rem;
+}

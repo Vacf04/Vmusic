@@ -1,19 +1,20 @@
-"use client";
+'use client';
 
-import searchAlbunsGet, { Album } from "@/actions/search-albuns-get";
-import searchArtistsGet from "@/actions/search-artists-get";
-import searchTracksGet from "@/actions/search-tracks-get";
-import { Artist } from "@/actions/top-artists-get";
-import { Track } from "@/actions/track-get";
-import useDebounce from "@/hooks/useDebounce";
-import { useEffect, useState } from "react";
-import MusicCard from "../music/MusicCard";
-import ArtistCard from "../artist/ArtistCard";
-import styles from "./SearchInput.module.css";
-import Loading from "../helper/Loading";
+import searchAlbunsGet, { Album } from '@/actions/search-albuns-get';
+import searchArtistsGet from '@/actions/search-artists-get';
+import searchTracksGet from '@/actions/search-tracks-get';
+import { Artist } from '@/actions/top-artists-get';
+import { Track } from '@/actions/track-get';
+import useDebounce from '@/hooks/useDebounce';
+import { useEffect, useState } from 'react';
+import MusicCard from '../music/MusicCard';
+import ArtistCard from '../artist/ArtistCard';
+import styles from './SearchInput.module.css';
+import Loading from '../helper/Loading';
+import AlbumCard from '../album/AlbumCard';
 
 export default function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [tracks, setTracks] = useState<Track[] | null>(null);
   const [artists, setArtists] = useState<Artist[] | null>(null);
   const [albuns, setAlbuns] = useState<Album[] | null>(null);
@@ -88,11 +89,15 @@ export default function SearchInput() {
                 <MusicCard key={track.id} track={track} />
               ))}
             </ul>
-            {albuns?.map((album) => (
-              <p key={album.id}>{album.title}</p>
-            ))}
+            <h1>Albuns</h1>
+            {albuns.length <= 0 && <li>Nenhuma album encontrado.</li>}
+            <ul className={styles.grid}>
+              {albuns?.map((album) => (
+                <AlbumCard key={album.id} album={album} />
+              ))}
+            </ul>
             <h1>Artistas</h1>
-            <ul>
+            <ul className={styles.grid}>
               {artists.length <= 0 && <li>Nenhuma artista encontrado.</li>}
               {artists?.map((artist) => (
                 <ArtistCard key={artist.id} artist={artist} />
