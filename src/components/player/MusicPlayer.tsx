@@ -1,6 +1,6 @@
-"use client";
-import { useMusic } from "@/context/MusicContext";
-import styles from "./MusicPlayer.module.css";
+'use client';
+import { useMusic } from '@/context/MusicContext';
+import styles from './MusicPlayer.module.css';
 import {
   BiPause,
   BiPlay,
@@ -9,10 +9,10 @@ import {
   BiVolumeFull,
   BiVolumeLow,
   BiVolumeMute,
-} from "react-icons/bi";
-import { useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+} from 'react-icons/bi';
+import { useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function MusicPlayer() {
   const audio = useRef<HTMLAudioElement | null>(null);
@@ -23,14 +23,6 @@ export default function MusicPlayer() {
 
   const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
     setProgress(e.currentTarget.currentTime);
-    if (Math.floor(progress) === Math.floor(totalDuration)) {
-      setTimeout(() => {
-        if (audio.current) {
-          audio.current.currentTime = 0;
-          playOrPauseMusic(audio.current);
-        }
-      }, 1200);
-    }
   };
 
   const volumeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
@@ -101,19 +93,19 @@ export default function MusicPlayer() {
                 : Math.floor(progress)
             }`}</p>
             <input
+              style={
+                {
+                  '--timing': `${(progress / totalDuration) * 100}%`,
+                } as React.CSSProperties
+              }
               type="range"
               name="duration"
               id="duration"
               className={styles.durationLine}
               value={progress}
               min={0}
+              max={Math.floor(totalDuration)}
               onChange={handleTimeChange}
-              max={totalDuration}
-              style={
-                {
-                  "--timing": `${(progress / totalDuration) * 100}%`,
-                } as React.CSSProperties
-              }
             />
             <p>{`00:${
               Math.floor(totalDuration).toString().length === 1
@@ -137,7 +129,7 @@ export default function MusicPlayer() {
             max={100}
             style={
               {
-                "--timing": `${volume}%`,
+                '--timing': `${volume}%`,
               } as React.CSSProperties
             }
           />
