@@ -52,7 +52,8 @@
   margin-top: 1rem;
 }
 
-.menu a:hover {
+.menu a:hover,
+.menu li .activeLink {
   color: var(--color-blue);
   border-right-color: var(--color-blue);
 }

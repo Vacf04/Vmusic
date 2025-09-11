@@ -28,8 +28,6 @@ export default async function searchAlbunsGet(
     }
 
     const album = await response.json();
-
-    console.log(album.data);
     return album.data;
   } catch (e: unknown) {
     if (e instanceof Error) {
