@@ -8,10 +8,10 @@ import { Track } from '@/actions/track-get';
 import useDebounce from '@/hooks/useDebounce';
 import { useEffect, useState } from 'react';
 import MusicCard from '../music/MusicCard';
-import ArtistCard from '../artist/ArtistCard';
 import styles from './SearchInput.module.css';
 import Loading from '../helper/Loading';
-import AlbumCard from '../album/AlbumCard';
+import AlbumList from '../album/AlbumList';
+import ArtistsList from '../artist/ArtistsList';
 
 export default function SearchInput() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -90,19 +90,17 @@ export default function SearchInput() {
               ))}
             </ul>
             <h1>Albuns</h1>
-            {albuns.length <= 0 && <li>Nenhuma album encontrado.</li>}
-            <ul className={styles.grid}>
-              {albuns?.map((album) => (
-                <AlbumCard key={album.id} album={album} />
-              ))}
-            </ul>
+            {albuns.length <= 0 ? (
+              <li>Nenhuma album encontrado.</li>
+            ) : (
+              <AlbumList albuns={albuns} />
+            )}
             <h1>Artistas</h1>
-            <ul className={styles.grid}>
-              {artists.length <= 0 && <li>Nenhuma artista encontrado.</li>}
-              {artists?.map((artist) => (
-                <ArtistCard key={artist.id} artist={artist} />
-              ))}
-            </ul>
+            {artists.length <= 0 ? (
+              <li>Nenhuma artista encontrado.</li>
+            ) : (
+              <ArtistsList artists={artists} />
+            )}
           </>
         )}
       </section>

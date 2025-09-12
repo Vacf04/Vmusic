@@ -1,12 +1,12 @@
 'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Album } from '@/actions/search-albuns-get';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './AlbumList.module.css';
+import styles from './ArtistsList.module.css';
+import { Artist } from '@/actions/top-artists-get';
 
-export default function AlbumList({ albuns }: { albuns: Album[] }) {
+export default function ArtistsList({ artists }: { artists: Artist[] }) {
   return (
     <Swiper
       tag="ul"
@@ -26,18 +26,18 @@ export default function AlbumList({ albuns }: { albuns: Album[] }) {
         },
       }}
     >
-      {albuns.map((album) => (
+      {artists.map((artist) => (
         <SwiperSlide tag="li">
-          <Link href={`/album/${album.id}`} className={styles.albumItem}>
+          <Link href={`/artista/${artist.id}`} className={styles.artistItem}>
             <div>
               <Image
-                src={album.cover_medium}
+                src={artist.picture_medium}
                 width={500}
                 height={500}
-                alt={`${album.title}`}
+                alt={`${artist.name}`}
               />
             </div>
-            <p>{album.title}</p>
+            <p>{artist.name}</p>
           </Link>
         </SwiperSlide>
       ))}

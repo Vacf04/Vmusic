@@ -1,7 +1,7 @@
-import topArtistsGet from "@/actions/top-artists-get";
-import topTracksGet from "@/actions/top-tracks-get";
-import TopArtists from "@/components/home/TopArtists";
-import TopTracks from "@/components/home/TopTracks";
+import topArtistsGet from '@/actions/top-artists-get';
+import topTracksGet from '@/actions/top-tracks-get';
+import TopArtists from '@/components/artist/TopArtists';
+import TopTracks from '@/components/music/TopTracks';
 
 export default async function Home() {
   const topTracks = await topTracksGet();
