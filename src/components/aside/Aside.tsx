@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 
 export default function Aside() {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <aside className={styles.aside}>
