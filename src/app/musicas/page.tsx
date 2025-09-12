@@ -1,5 +1,5 @@
-import topTracksGet from "@/actions/top-tracks-get";
-import TopTracks from "@/components/home/TopTracks";
+import topTracksGet from '@/actions/top-tracks-get';
+import TopTracks from '@/components/music/TopTracks';
 
 export default async function MusicasPage() {
   const topTracks = await topTracksGet();

@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { BiPlay } from 'react-icons/bi';
 import { ArtistObject } from '@/actions/artist-get';
 import MusicCard from '../music/MusicCard';
-import Link from 'next/link';
 import AlbumList from '../album/AlbumList';
 
 export default function ArtistSection({
@@ -28,7 +27,7 @@ export default function ArtistSection({
   };
 
   return (
-    <section>
+    <section className="showRight">
       <header className={styles.header}>
         <div className={styles.artistImageContainer}>
           <Image

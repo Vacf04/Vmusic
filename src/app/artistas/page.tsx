@@ -1,5 +1,5 @@
-import topArtistsGet from "@/actions/top-artists-get";
-import TopArtists from "@/components/home/TopArtists";
+import topArtistsGet from '@/actions/top-artists-get';
+import TopArtists from '@/components/artist/TopArtists';
 
 export default async function ArtistasPage() {
   const topArtits = await topArtistsGet();
