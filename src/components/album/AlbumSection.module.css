@@ -1,0 +1,43 @@
+.albumImageContainer {
+  border-radius: var(--border-radius);
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+}
+
+.albumImageContainer img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.nameAndYear {
+  margin-top: .25rem;
+  color: var(--color-secondary);
+}
+
+.nameAndYear a:hover {
+  text-decoration: underline;
+}
+
+.albumData button {
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  background-color: var(--color-blue);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1.5rem;
+  padding: .4rem .8rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
