@@ -19,7 +19,8 @@ export default function MusicPlayer() {
   const [progress, setProgress] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
   const [volume, setVolume] = useState(100);
-  const { music, playOrPauseMusic, isPlaying, setIsPlaying } = useMusic();
+  const { music, cover, playOrPauseMusic, isPlaying, setIsPlaying } =
+    useMusic();
 
   const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
     setProgress(e.currentTarget.currentTime);
@@ -41,7 +42,7 @@ export default function MusicPlayer() {
     if (audio.current) audio.current.volume = Number(e.target.value) / 100;
   };
 
-  if (!music) return null;
+  if (!music || !cover) return null;
   return (
     <div className="musicPlayer">
       <audio
@@ -56,12 +57,7 @@ export default function MusicPlayer() {
       />
       <div className={styles.player}>
         <div className={styles.mainData}>
-          <Image
-            src={music.album.cover_small}
-            width={50}
-            height={50}
-            alt={`Capa do ${music.album.title}`}
-          />
+          <Image src={cover} width={50} height={50} alt={`Capa da música`} />
           <div>
             <p className={styles.title}>{music.title}</p>
             <Link

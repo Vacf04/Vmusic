@@ -1,25 +1,32 @@
-"use client";
-import { Track } from "@/actions/track-get";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./MusicCard.module.css";
-import { useMusic } from "@/context/MusicContext";
+'use client';
+import { Track } from '@/actions/track-get';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './MusicCard.module.css';
+import { useMusic } from '@/context/MusicContext';
 
-export default function MusicCard({ track }: { track: Track }) {
-  const { setMusic } = useMusic();
+export default function MusicCard({
+  track,
+  cover = null,
+}: {
+  track: Track;
+  cover: null | string;
+}) {
+  const { setMusic, setCover } = useMusic();
 
   return (
     <li
       onClick={() => {
         setMusic(track);
+        setCover(cover ? cover : track.album.cover_small);
       }}
       className={styles.musicItem}
     >
       <Image
-        src={track.album.cover_small}
+        src={cover ? cover : track.album.cover_small}
         width={50}
         height={50}
-        alt={`Capa do ${track.album.title}`}
+        alt="Capa da música"
       />
       <div>
         <p className={styles.title}>{track.title}</p>
