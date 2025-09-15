@@ -1,17 +1,13 @@
-'use client';
-import { Track } from '@/actions/track-get';
-import MusicCard from '../music/MusicCard';
-import styles from './TopTracks.module.css';
+"use client";
+import { Track } from "@/actions/track-get";
+import styles from "./TopTracks.module.css";
+import MusicList from "./MusicList";
 
 export default function TopTracks({ topTracks }: { topTracks: Track[] }) {
   return (
     <section className={`${styles.topTracksSection} showRight`}>
       <h1>As mais escutadas</h1>
-      <ul className={styles.topTracks}>
-        {topTracks.map((track) => (
-          <MusicCard key={track.id} track={track} />
-        ))}
-      </ul>
+      <MusicList tracks={topTracks} cover={null} />
     </section>
   );
 }
