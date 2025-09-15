@@ -1,6 +1,12 @@
-'use client';
-import { Track } from '@/actions/track-get';
-import { createContext, ReactNode, useContext, useState } from 'react';
+"use client";
+import { Track } from "@/actions/track-get";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 export type MusicContextProps = {
   music: Track | null;
@@ -11,6 +17,13 @@ export type MusicContextProps = {
   skipMusic: () => void;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  selectNextMusic: (index: number) => void;
+  setTrackList: React.Dispatch<
+    React.SetStateAction<{
+      tracks: Track[] | null;
+      cover: string | null;
+    }>
+  >;
 };
 
 export const MusicContext = createContext<MusicContextProps | null>(null);
@@ -18,7 +31,7 @@ export const MusicContext = createContext<MusicContextProps | null>(null);
 export const useMusic = () => {
   const context = useContext(MusicContext);
   if (context === null) {
-    throw new Error('useContext must be used inside a Provider');
+    throw new Error("useContext must be used inside a Provider");
   }
   return context;
 };
@@ -27,6 +40,11 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const [music, setMusic] = useState<Track | null>(null);
   const [cover, setCover] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [actualIndex, setActualIndex] = useState(-1);
+  const [trackList, setTrackList] = useState<{
+    tracks: Track[] | null;
+    cover: string | null;
+  }>({ tracks: null, cover: null });
 
   const playOrPauseMusic = (audio: HTMLAudioElement) => {
     if (isPlaying) {
@@ -35,13 +53,33 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
       audio.play();
     }
   };
-  const skipMusic = () => {};
+
+  const skipMusic = () => {
+    setActualIndex(actualIndex + 1);
+  };
+
+  const selectNextMusic = (index: number) => {
+    setActualIndex(index);
+  };
+
+  useEffect(() => {
+    if (trackList.tracks && actualIndex !== -1) {
+      setMusic(trackList.tracks[actualIndex]);
+      setCover(
+        trackList.cover
+          ? trackList.cover
+          : trackList.tracks[actualIndex].album.cover_medium
+      );
+    }
+  }, [actualIndex, trackList]);
 
   return (
     <MusicContext.Provider
       value={{
         music,
         setMusic,
+        setTrackList,
+        selectNextMusic,
         cover,
         setCover,
         playOrPauseMusic,

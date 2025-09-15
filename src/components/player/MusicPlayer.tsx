@@ -1,6 +1,6 @@
-'use client';
-import { useMusic } from '@/context/MusicContext';
-import styles from './MusicPlayer.module.css';
+"use client";
+import { useMusic } from "@/context/MusicContext";
+import styles from "./MusicPlayer.module.css";
 import {
   BiPause,
   BiPlay,
@@ -9,17 +9,17 @@ import {
   BiVolumeFull,
   BiVolumeLow,
   BiVolumeMute,
-} from 'react-icons/bi';
-import { useRef, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+} from "react-icons/bi";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function MusicPlayer() {
   const audio = useRef<HTMLAudioElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
   const [volume, setVolume] = useState(100);
-  const { music, cover, playOrPauseMusic, isPlaying, setIsPlaying } =
+  const { music, cover, playOrPauseMusic, isPlaying, setIsPlaying, skipMusic } =
     useMusic();
 
   const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
@@ -78,7 +78,7 @@ export default function MusicPlayer() {
             >
               {isPlaying ? <BiPause /> : <BiPlay />}
             </button>
-            <button>
+            <button onClick={skipMusic}>
               <BiSkipNext />
             </button>
           </div>
@@ -91,7 +91,7 @@ export default function MusicPlayer() {
             <input
               style={
                 {
-                  '--timing': `${(progress / totalDuration) * 100}%`,
+                  "--timing": `${(progress / totalDuration) * 100}%`,
                 } as React.CSSProperties
               }
               type="range"
@@ -125,7 +125,7 @@ export default function MusicPlayer() {
             max={100}
             style={
               {
-                '--timing': `${volume}%`,
+                "--timing": `${volume}%`,
               } as React.CSSProperties
             }
           />
