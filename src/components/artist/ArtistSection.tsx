@@ -1,10 +1,10 @@
-'use client';
-import styles from './ArtistSection.module.css';
-import Image from 'next/image';
-import { BiPlay } from 'react-icons/bi';
-import { ArtistObject } from '@/actions/artist-get';
-import MusicCard from '../music/MusicCard';
-import AlbumList from '../album/AlbumList';
+"use client";
+import styles from "./ArtistSection.module.css";
+import Image from "next/image";
+import { BiPlay } from "react-icons/bi";
+import { ArtistObject } from "@/actions/artist-get";
+import AlbumList from "../album/AlbumList";
+import MusicList from "../music/MusicList";
 
 export default function ArtistSection({
   artistData,
@@ -48,11 +48,7 @@ export default function ArtistSection({
       </header>
       <div className={styles.topSongs}>
         <h1>Mais Escutadas</h1>
-        <ul className={styles.tracksList}>
-          {topMusics.data.map((music) => (
-            <MusicCard key={music.id} track={music} />
-          ))}
-        </ul>
+        <MusicList tracks={topMusics.data} cover={null} />
       </div>
       <div className={styles.albuns}>
         <h1>Albuns</h1>

@@ -1,10 +1,10 @@
-'use client';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { Album } from '@/actions/search-albuns-get';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './AlbumList.module.css';
+"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Album } from "@/actions/search-albuns-get";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./AlbumList.module.css";
 
 export default function AlbumList({ albuns }: { albuns: Album[] }) {
   return (
@@ -27,7 +27,7 @@ export default function AlbumList({ albuns }: { albuns: Album[] }) {
       }}
     >
       {albuns.map((album) => (
-        <SwiperSlide tag="li">
+        <SwiperSlide tag="li" key={album.id}>
           <Link href={`/album/${album.id}`} className={styles.albumItem}>
             <div>
               <Image

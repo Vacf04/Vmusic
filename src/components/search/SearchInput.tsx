@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import searchAlbunsGet, { Album } from '@/actions/search-albuns-get';
-import searchArtistsGet from '@/actions/search-artists-get';
-import searchTracksGet from '@/actions/search-tracks-get';
-import { Artist } from '@/actions/top-artists-get';
-import { Track } from '@/actions/track-get';
-import useDebounce from '@/hooks/useDebounce';
-import { useEffect, useState } from 'react';
-import MusicCard from '../music/MusicCard';
-import styles from './SearchInput.module.css';
-import Loading from '../helper/Loading';
-import AlbumList from '../album/AlbumList';
-import ArtistsList from '../artist/ArtistsList';
+import searchAlbunsGet, { Album } from "@/actions/search-albuns-get";
+import searchArtistsGet from "@/actions/search-artists-get";
+import searchTracksGet from "@/actions/search-tracks-get";
+import { Artist } from "@/actions/top-artists-get";
+import { Track } from "@/actions/track-get";
+import useDebounce from "@/hooks/useDebounce";
+import { useEffect, useState } from "react";
+import styles from "./SearchInput.module.css";
+import Loading from "../helper/Loading";
+import AlbumList from "../album/AlbumList";
+import ArtistsList from "../artist/ArtistsList";
+import MusicList from "../music/MusicList";
 
 export default function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [tracks, setTracks] = useState<Track[] | null>(null);
   const [artists, setArtists] = useState<Artist[] | null>(null);
   const [albuns, setAlbuns] = useState<Album[] | null>(null);
@@ -83,21 +83,20 @@ export default function SearchInput() {
         {!isLoading && !error && tracks && artists && albuns && (
           <>
             <h1>Músicas</h1>
-            <ul>
-              {tracks.length <= 0 && <li>Nenhuma música encontrada.</li>}
-              {tracks?.map((track) => (
-                <MusicCard key={track.id} track={track} />
-              ))}
-            </ul>
+            {tracks.length <= 0 ? (
+              <p>Nenhuma música encontrada.</p>
+            ) : (
+              <MusicList tracks={tracks} cover={null} />
+            )}
             <h1>Albuns</h1>
             {albuns.length <= 0 ? (
-              <li>Nenhuma album encontrado.</li>
+              <p>Nenhum album encontrado.</p>
             ) : (
               <AlbumList albuns={albuns} />
             )}
             <h1>Artistas</h1>
             {artists.length <= 0 ? (
-              <li>Nenhuma artista encontrado.</li>
+              <p>Nenhum artista encontrado.</p>
             ) : (
               <ArtistsList artists={artists} />
             )}

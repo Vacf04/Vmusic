@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { AlbumData } from '@/actions/album-get';
-import Image from 'next/image';
-import styles from './AlbumSection.module.css';
-import MusicCard from '../music/MusicCard';
-import { BiPlay } from 'react-icons/bi';
-import Link from 'next/link';
+import { AlbumData } from "@/actions/album-get";
+import Image from "next/image";
+import styles from "./AlbumSection.module.css";
+import { BiPlay } from "react-icons/bi";
+import Link from "next/link";
+import MusicList from "../music/MusicList";
 
 export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
   const { album, tracks } = albumData;
@@ -26,7 +26,7 @@ export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
           <p className={styles.nameAndYear}>
             <Link href={`/artista/${album.artist.id}`}>
               {album.artist.name}
-            </Link>{' '}
+            </Link>{" "}
             • {album.release_date.slice(0, 4)}
           </p>
           <button>
@@ -35,11 +35,7 @@ export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
           </button>
         </div>
       </header>
-      <ul className={styles.musicList}>
-        {tracks.data.map((music) => (
-          <MusicCard key={music.id} track={music} cover={album.cover_medium} />
-        ))}
-      </ul>
+      <MusicList tracks={tracks.data} cover={album.cover_medium} />
     </section>
   );
 }
