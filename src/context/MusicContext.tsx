@@ -25,6 +25,7 @@ export type MusicContextProps = {
     }>
   >;
   lastMusic: () => void;
+  actualIndex: number;
 };
 
 export const MusicContext = createContext<MusicContextProps | null>(null);
@@ -89,11 +90,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
           : trackList.tracks[actualIndex].album.cover_medium,
       );
     }
-  }, [actualIndex]);
-
-  useEffect(() => {
-    setActualIndex(-1);
-  }, [trackList]);
+  }, [actualIndex, trackList]);
 
   return (
     <MusicContext.Provider
@@ -109,6 +106,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         lastMusic,
         isPlaying,
         setIsPlaying,
+        actualIndex,
       }}
     >
       {children}

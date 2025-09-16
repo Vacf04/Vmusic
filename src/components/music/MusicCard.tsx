@@ -1,24 +1,30 @@
-"use client";
-import { Track } from "@/actions/track-get";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./MusicCard.module.css";
-import { useMusic } from "@/context/MusicContext";
+'use client';
+import { Track } from '@/actions/track-get';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './MusicCard.module.css';
+import { useMusic } from '@/context/MusicContext';
 
 export default function MusicCard({
   track,
   cover = null,
   index,
+  tracks,
 }: {
   track: Track;
   cover: null | string;
   index: number;
+  tracks: Track[];
 }) {
-  const { selectNextMusic } = useMusic();
+  const { selectNextMusic, setTrackList, music } = useMusic();
 
   return (
     <li
-      onClick={() => {
+      onClick={(e: React.MouseEvent<HTMLLIElement>) => {
+        if (track.id === music?.id) return;
+        if (!(e.target instanceof HTMLElement)) return;
+        if (e.target.tagName === 'A') return;
+        setTrackList({ tracks, cover });
         selectNextMusic(index);
       }}
       className={styles.musicItem}
