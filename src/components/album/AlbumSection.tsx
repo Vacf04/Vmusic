@@ -1,14 +1,16 @@
-"use client";
+'use client';
 
-import { AlbumData } from "@/actions/album-get";
-import Image from "next/image";
-import styles from "./AlbumSection.module.css";
-import { BiPlay } from "react-icons/bi";
-import Link from "next/link";
-import MusicList from "../music/MusicList";
+import { AlbumData } from '@/actions/album-get';
+import Image from 'next/image';
+import styles from './AlbumSection.module.css';
+import { BiPlay } from 'react-icons/bi';
+import Link from 'next/link';
+import MusicList from '../music/MusicList';
+import { useMusic } from '@/context/MusicContext';
 
 export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
   const { album, tracks } = albumData;
+  const { selectNextMusic } = useMusic();
 
   return (
     <section>
@@ -26,10 +28,14 @@ export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
           <p className={styles.nameAndYear}>
             <Link href={`/artista/${album.artist.id}`}>
               {album.artist.name}
-            </Link>{" "}
+            </Link>{' '}
             • {album.release_date.slice(0, 4)}
           </p>
-          <button>
+          <button
+            onClick={() => {
+              selectNextMusic(0);
+            }}
+          >
             <BiPlay />
             Play
           </button>

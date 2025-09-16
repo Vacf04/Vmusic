@@ -1,12 +1,12 @@
-"use client";
-import { Track } from "@/actions/track-get";
+'use client';
+import { Track } from '@/actions/track-get';
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
 export type MusicContextProps = {
   music: Track | null;
@@ -24,6 +24,7 @@ export type MusicContextProps = {
       cover: string | null;
     }>
   >;
+  lastMusic: () => void;
 };
 
 export const MusicContext = createContext<MusicContextProps | null>(null);
@@ -31,7 +32,7 @@ export const MusicContext = createContext<MusicContextProps | null>(null);
 export const useMusic = () => {
   const context = useContext(MusicContext);
   if (context === null) {
-    throw new Error("useContext must be used inside a Provider");
+    throw new Error('useContext must be used inside a Provider');
   }
   return context;
 };
@@ -54,8 +55,25 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const lastMusic = () => {
+    if (trackList.tracks)
+      if (actualIndex === 0) {
+        setActualIndex(trackList.tracks.length - 1);
+      } else {
+        setActualIndex(actualIndex - 1);
+      }
+  };
+
   const skipMusic = () => {
-    setActualIndex(actualIndex + 1);
+    if (trackList.tracks)
+      if (actualIndex === trackList.tracks?.length - 1) {
+        setActualIndex(0);
+      } else {
+        setActualIndex(actualIndex + 1);
+      }
+    else {
+      setActualIndex(0);
+    }
   };
 
   const selectNextMusic = (index: number) => {
@@ -68,10 +86,14 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
       setCover(
         trackList.cover
           ? trackList.cover
-          : trackList.tracks[actualIndex].album.cover_medium
+          : trackList.tracks[actualIndex].album.cover_medium,
       );
     }
-  }, [actualIndex, trackList]);
+  }, [actualIndex]);
+
+  useEffect(() => {
+    setActualIndex(-1);
+  }, [trackList]);
 
   return (
     <MusicContext.Provider
@@ -84,6 +106,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         setCover,
         playOrPauseMusic,
         skipMusic,
+        lastMusic,
         isPlaying,
         setIsPlaying,
       }}

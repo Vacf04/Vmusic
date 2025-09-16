@@ -1,10 +1,11 @@
-"use client";
-import styles from "./ArtistSection.module.css";
-import Image from "next/image";
-import { BiPlay } from "react-icons/bi";
-import { ArtistObject } from "@/actions/artist-get";
-import AlbumList from "../album/AlbumList";
-import MusicList from "../music/MusicList";
+'use client';
+import styles from './ArtistSection.module.css';
+import Image from 'next/image';
+import { BiPlay } from 'react-icons/bi';
+import { ArtistObject } from '@/actions/artist-get';
+import AlbumList from '../album/AlbumList';
+import MusicList from '../music/MusicList';
+import { useMusic } from '@/context/MusicContext';
 
 export default function ArtistSection({
   artistData,
@@ -12,6 +13,7 @@ export default function ArtistSection({
   artistData: ArtistObject;
 }) {
   const { artist, topMusics, albuns } = artistData;
+  const { selectNextMusic } = useMusic();
 
   const formatFansNumber = (nb_fan: number): string => {
     if (nb_fan >= 1000000000) {
@@ -40,7 +42,11 @@ export default function ArtistSection({
         <div className={styles.artistData}>
           <h1>{artist.name}</h1>
           <p className={styles.fans}>{formatFansNumber(artist.nb_fan)} Fãs</p>
-          <button>
+          <button
+            onClick={() => {
+              selectNextMusic(0);
+            }}
+          >
             <BiPlay />
             Play
           </button>
