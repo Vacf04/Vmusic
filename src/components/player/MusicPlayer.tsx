@@ -19,11 +19,27 @@ export default function MusicPlayer() {
   const [progress, setProgress] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
   const [volume, setVolume] = useState(100);
-  const { music, cover, playOrPauseMusic, isPlaying, setIsPlaying } =
-    useMusic();
+  const {
+    music,
+    cover,
+    playOrPauseMusic,
+    isPlaying,
+    setIsPlaying,
+    skipMusic,
+    lastMusic,
+  } = useMusic();
 
   const secondsUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
     setProgress(e.currentTarget.currentTime);
+    if (audio.current)
+      if (
+        Math.floor(e.currentTarget.currentTime) ===
+        Math.floor(audio.current?.duration)
+      ) {
+        setTimeout(() => {
+          skipMusic();
+        }, 900);
+      }
   };
 
   const volumeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
@@ -70,7 +86,7 @@ export default function MusicPlayer() {
         </div>
         <div className={styles.controls}>
           <div className={styles.mainControls}>
-            <button>
+            <button onClick={lastMusic}>
               <BiSkipPrevious />
             </button>
             <button
@@ -78,7 +94,7 @@ export default function MusicPlayer() {
             >
               {isPlaying ? <BiPause /> : <BiPlay />}
             </button>
-            <button>
+            <button onClick={skipMusic}>
               <BiSkipNext />
             </button>
           </div>

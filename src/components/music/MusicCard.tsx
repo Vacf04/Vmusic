@@ -1,24 +1,25 @@
-'use client';
-import { Track } from '@/actions/track-get';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './MusicCard.module.css';
-import { useMusic } from '@/context/MusicContext';
+"use client";
+import { Track } from "@/actions/track-get";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./MusicCard.module.css";
+import { useMusic } from "@/context/MusicContext";
 
 export default function MusicCard({
   track,
   cover = null,
+  index,
 }: {
   track: Track;
   cover: null | string;
+  index: number;
 }) {
-  const { setMusic, setCover } = useMusic();
+  const { selectNextMusic } = useMusic();
 
   return (
     <li
       onClick={() => {
-        setMusic(track);
-        setCover(cover ? cover : track.album.cover_small);
+        selectNextMusic(index);
       }}
       className={styles.musicItem}
     >
