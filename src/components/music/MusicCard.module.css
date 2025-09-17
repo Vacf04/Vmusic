@@ -41,18 +41,17 @@
 
 @media (max-width: 768px) {
   .artist {
-  font-size: 0.575rem;
-  color: var(--color-secondary);
-  font-weight: 500;
-}
+    font-size: 0.575rem;
+    color: var(--color-secondary);
+    font-weight: 500;
+  }
 
-.title {
-  font-size: .985rem;
-  font-weight: 500;
-}
+  .title {
+    font-size: 0.985rem;
+    font-weight: 500;
+  }
 
-.duration {
- font-size: .985rem;
+  .duration {
+    font-size: 0.985rem;
+  }
 }
-}
-

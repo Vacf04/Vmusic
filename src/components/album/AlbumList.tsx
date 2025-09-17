@@ -37,7 +37,11 @@ export default function AlbumList({ albuns }: { albuns: Album[] }) {
                 alt={`${album.title}`}
               />
             </div>
-            <p>{album.title}</p>
+            <p>
+              {album.title.length >= 28
+                ? `${album.title.slice(0, 27).trim()}...`
+                : album.title}
+            </p>
           </Link>
         </SwiperSlide>
       ))}

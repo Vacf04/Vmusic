@@ -93,18 +93,28 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  html{font-size: 75%;}
+  html {
+    font-size: 75%;
+  }
 
   .body {
     grid-template-columns: 25vw calc(75vw - 1.5rem);
   }
+
+  .body main {
+    padding: 1rem;
+    padding-top: 1.65rem;
+  }
 }
 
-@media (max-width: 400px) {
-  html{font-size: 60%;}
+@media (max-width: 520px) {
+  html {
+    font-size: 60%;
+  }
 }
-
 
 @media (max-width: 350px) {
-  html{font-size: 55%;}
+  html {
+    font-size: 55%;
+  }
 }
