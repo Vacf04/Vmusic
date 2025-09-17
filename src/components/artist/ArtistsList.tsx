@@ -27,7 +27,7 @@ export default function ArtistsList({ artists }: { artists: Artist[] }) {
       }}
     >
       {artists.map((artist) => (
-        <SwiperSlide tag="li">
+        <SwiperSlide tag="li" key={artist.id}>
           <Link href={`/artista/${artist.id}`} className={styles.artistItem}>
             <div>
               <Image

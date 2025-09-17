@@ -30,3 +30,9 @@
   gap: 1rem;
   padding-left: 0.5rem;
 }
+
+@media (max-width: 768px) {
+  .input {
+    width: 100%;
+  }
+}

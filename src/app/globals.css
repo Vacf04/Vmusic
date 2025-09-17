@@ -27,12 +27,15 @@ ol {
   list-style: none;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
 .body {
   display: grid;
   grid-template-columns: 0.18fr 1fr;
   font-family: var(--font-quicksand);
-  overflow-y: hidden;
-  height: 95vh;
+  height: 100vh;
   background-color: var(--color-black);
   padding: 0.5rem;
   gap: 0.5rem;
@@ -87,4 +90,21 @@ ol {
   opacity: 0;
   transform: translateX(-20px);
   animation: forwards var(--transition) showRight;
+}
+
+@media (max-width: 768px) {
+  html{font-size: 75%;}
+
+  .body {
+    grid-template-columns: 25vw calc(75vw - 1.5rem);
+  }
+}
+
+@media (max-width: 400px) {
+  html{font-size: 60%;}
+}
+
+
+@media (max-width: 350px) {
+  html{font-size: 55%;}
 }
