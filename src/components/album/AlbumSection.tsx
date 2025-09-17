@@ -10,7 +10,7 @@ import { useMusic } from '@/context/MusicContext';
 
 export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
   const { album, tracks } = albumData;
-  const { selectNextMusic } = useMusic();
+  const { selectNextMusic, setTrackList } = useMusic();
 
   return (
     <section>
@@ -33,6 +33,7 @@ export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
           </p>
           <button
             onClick={() => {
+              setTrackList({ tracks: tracks.data, cover: album.cover_medium });
               selectNextMusic(0);
             }}
           >

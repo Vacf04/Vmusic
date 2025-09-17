@@ -13,7 +13,7 @@ export default function ArtistSection({
   artistData: ArtistObject;
 }) {
   const { artist, topMusics, albuns } = artistData;
-  const { selectNextMusic } = useMusic();
+  const { selectNextMusic, setTrackList } = useMusic();
 
   const formatFansNumber = (nb_fan: number): string => {
     if (nb_fan >= 1000000000) {
@@ -44,6 +44,7 @@ export default function ArtistSection({
           <p className={styles.fans}>{formatFansNumber(artist.nb_fan)} Fãs</p>
           <button
             onClick={() => {
+              setTrackList({ tracks: topMusics.data, cover: null });
               selectNextMusic(0);
             }}
           >
