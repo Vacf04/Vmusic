@@ -84,11 +84,11 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (trackList.tracks && actualIndex !== -1) {
       setMusic(trackList.tracks[actualIndex]);
-      setCover(
-        trackList.tracks[actualIndex].album.cover_medium
-          ? trackList.tracks[actualIndex].album.cover_medium
-          : trackList.cover
-      );
+      if (trackList.tracks[actualIndex].album) {
+        setCover(trackList.tracks[actualIndex].album.cover_medium);
+      } else {
+        setCover(trackList.cover);
+      }
     }
   }, [actualIndex, trackList]);
 
