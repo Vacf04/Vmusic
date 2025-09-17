@@ -75,7 +75,11 @@ export default function MusicPlayer() {
         <div className={styles.mainData}>
           <Image src={cover} width={50} height={50} alt={`Capa da música`} />
           <div>
-            <p className={styles.title}>{music.title}</p>
+            <p className={styles.title}>
+              {music.title.length >= 28
+                ? `${music.title.slice(0, 27).trim()}...`
+                : music.title}
+            </p>
             <Link
               href={`/artista/${music.artist.id}`}
               className={styles.artist}

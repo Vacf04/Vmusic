@@ -36,7 +36,11 @@ export default function MusicCard({
         alt="Capa da música"
       />
       <div>
-        <p className={styles.title}>{track.title}</p>
+        <p className={styles.title}>
+          {track.title.length >= 28
+            ? `${track.title.slice(0, 27).trim()}...`
+            : track.title}
+        </p>
         <Link href={`/artista/${track.artist.id}`} className={styles.artist}>
           {track.artist.name}
         </Link>

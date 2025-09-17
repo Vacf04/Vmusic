@@ -11,6 +11,8 @@
 
 .musicItem img {
   border-radius: var(--border-radius);
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
 .duration {
@@ -36,3 +38,21 @@
   font-size: 1.25rem;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .artist {
+  font-size: 0.575rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.title {
+  font-size: .985rem;
+  font-weight: 500;
+}
+
+.duration {
+ font-size: .985rem;
+}
+}
+
