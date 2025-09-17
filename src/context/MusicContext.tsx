@@ -1,12 +1,12 @@
-'use client';
-import { Track } from '@/actions/track-get';
+"use client";
+import { Track } from "@/actions/track-get";
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from 'react';
+} from "react";
 
 export type MusicContextProps = {
   music: Track | null;
@@ -33,7 +33,7 @@ export const MusicContext = createContext<MusicContextProps | null>(null);
 export const useMusic = () => {
   const context = useContext(MusicContext);
   if (context === null) {
-    throw new Error('useContext must be used inside a Provider');
+    throw new Error("useContext must be used inside a Provider");
   }
   return context;
 };
@@ -85,9 +85,9 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
     if (trackList.tracks && actualIndex !== -1) {
       setMusic(trackList.tracks[actualIndex]);
       setCover(
-        trackList.cover
-          ? trackList.cover
-          : trackList.tracks[actualIndex].album.cover_medium,
+        trackList.tracks[actualIndex].album.cover_medium
+          ? trackList.tracks[actualIndex].album.cover_medium
+          : trackList.cover
       );
     }
   }, [actualIndex, trackList]);
