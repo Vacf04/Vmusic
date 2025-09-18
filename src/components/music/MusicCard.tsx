@@ -1,9 +1,9 @@
-'use client';
-import { Track } from '@/actions/track-get';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './MusicCard.module.css';
-import { useMusic } from '@/context/MusicContext';
+"use client";
+import { Track } from "@/actions/track-get";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./MusicCard.module.css";
+import { useMusic } from "@/context/MusicContext";
 
 export default function MusicCard({
   track,
@@ -23,7 +23,7 @@ export default function MusicCard({
       onClick={(e: React.MouseEvent<HTMLLIElement>) => {
         if (track.id === music?.id) return;
         if (!(e.target instanceof HTMLElement)) return;
-        if (e.target.tagName === 'A') return;
+        if (e.target.tagName === "A") return;
         setTrackList({ tracks, cover });
         selectNextMusic(index);
       }}
@@ -47,7 +47,7 @@ export default function MusicCard({
       </div>
       <p className={styles.duration}>{`${Math.floor(track.duration / 60)}:${
         (track.duration % 60).toString().length === 1
-          ? `${track.duration % 60}0`
+          ? `0${track.duration % 60}`
           : track.duration % 60
       }`}</p>
     </li>
