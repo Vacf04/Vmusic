@@ -1,10 +1,8 @@
-'use client';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './ArtistsList.module.css';
-import { Artist } from '@/actions/top-artists-get';
+"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Artist } from "@/actions/top-artists-get";
+import ArtistsCard from "./ArtistCard";
 
 export default function ArtistsList({ artists }: { artists: Artist[] }) {
   return (
@@ -28,17 +26,7 @@ export default function ArtistsList({ artists }: { artists: Artist[] }) {
     >
       {artists.map((artist) => (
         <SwiperSlide tag="li" key={artist.id}>
-          <Link href={`/artista/${artist.id}`} className={styles.artistItem}>
-            <div>
-              <Image
-                src={artist.picture_medium}
-                width={500}
-                height={500}
-                alt={`${artist.name}`}
-              />
-            </div>
-            <p>{artist.name}</p>
-          </Link>
+          <ArtistsCard artist={artist} />
         </SwiperSlide>
       ))}
     </Swiper>

@@ -6,3 +6,20 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: auto auto;
+  }
+}

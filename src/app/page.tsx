@@ -1,7 +1,8 @@
-import topArtistsGet from '@/actions/top-artists-get';
-import topTracksGet from '@/actions/top-tracks-get';
-import TopArtists from '@/components/artist/TopArtists';
-import TopTracks from '@/components/music/TopTracks';
+import topArtistsGet from "@/actions/top-artists-get";
+import topTracksGet from "@/actions/top-tracks-get";
+import ArtistsList from "@/components/artist/ArtistsList";
+import TopTracks from "@/components/music/TopTracks";
+import styles from "./page.module.css";
 
 export default async function Home() {
   const topTracks = await topTracksGet();
@@ -11,7 +12,10 @@ export default async function Home() {
   return (
     <>
       <TopTracks topTracks={topTracks} />
-      <TopArtists topArtists={topArtits}></TopArtists>
+      <section>
+        <h1 className={styles.topArtists}>Os artistas mais escutados</h1>
+        <ArtistsList artists={topArtits} />
+      </section>
     </>
   );
 }

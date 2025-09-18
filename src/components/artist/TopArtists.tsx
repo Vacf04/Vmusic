@@ -1,13 +1,19 @@
-'use client';
-import { Artist } from '@/actions/top-artists-get';
-import styles from './TopArtists.module.css';
-import ArtistsList from './ArtistsList';
+"use client";
+import { Artist } from "@/actions/top-artists-get";
+import styles from "./TopArtists.module.css";
+import ArtistsCard from "./ArtistCard";
 
 export default function TopArtists({ topArtists }: { topArtists: Artist[] }) {
   return (
     <section className={`${styles.topArtistsSection} showRight`}>
       <h1>Os artistas mais escutados</h1>
-      <ArtistsList artists={topArtists} />
+      <ul className={styles.grid}>
+        {topArtists.map((artist) => (
+          <li key={artist.id}>
+            <ArtistsCard artist={artist} />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
