@@ -12,6 +12,7 @@ import Loading from '../helper/Loading';
 import AlbumList from '../album/AlbumList';
 import ArtistsList from '../artist/ArtistsList';
 import MusicList from '../music/MusicList';
+import ErrorComponent from '../helper/Error';
 
 export default function SearchInput() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -77,7 +78,11 @@ export default function SearchInput() {
         />
       </form>
       {isLoading && <Loading />}
-      {error && <p>{error}</p>}
+      {error && (
+        <p>
+          <ErrorComponent errorMessage={error} />
+        </p>
+      )}
       {!isLoading && !error && tracks && artists && albuns && (
         <>
           <section className="showRight">
