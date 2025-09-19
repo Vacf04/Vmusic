@@ -1,0 +1,35 @@
+
+.headerSlide {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.headerSlide div {
+  display: flex;
+  gap: .7rem;
+}
+
+.headerSlide button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.headerSlide button:hover {
+  color: var(--color-blue);
+}
+
+.headerSlide svg {
+  width: 100%;
+  height: 100%;
+}

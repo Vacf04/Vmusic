@@ -13,7 +13,7 @@ export default function AlbumSection({ albumData }: { albumData: AlbumData }) {
   const { selectNextMusic, setTrackList } = useMusic();
 
   return (
-    <section>
+    <section className="showRight">
       <header className={styles.header}>
         <div className={styles.albumImageContainer}>
           <Image

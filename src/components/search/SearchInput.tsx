@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import searchAlbunsGet, { Album } from "@/actions/search-albuns-get";
-import searchArtistsGet from "@/actions/search-artists-get";
-import searchTracksGet from "@/actions/search-tracks-get";
-import { Artist } from "@/actions/top-artists-get";
-import { Track } from "@/actions/track-get";
-import useDebounce from "@/hooks/useDebounce";
-import { useEffect, useState } from "react";
-import styles from "./SearchInput.module.css";
-import Loading from "../helper/Loading";
-import AlbumList from "../album/AlbumList";
-import ArtistsList from "../artist/ArtistsList";
-import MusicList from "../music/MusicList";
+import searchAlbunsGet, { Album } from '@/actions/search-albuns-get';
+import searchArtistsGet from '@/actions/search-artists-get';
+import searchTracksGet from '@/actions/search-tracks-get';
+import { Artist } from '@/actions/top-artists-get';
+import { Track } from '@/actions/track-get';
+import useDebounce from '@/hooks/useDebounce';
+import { useEffect, useState } from 'react';
+import styles from './SearchInput.module.css';
+import Loading from '../helper/Loading';
+import AlbumList from '../album/AlbumList';
+import ArtistsList from '../artist/ArtistsList';
+import MusicList from '../music/MusicList';
 
 export default function SearchInput() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [tracks, setTracks] = useState<Track[] | null>(null);
   const [artists, setArtists] = useState<Artist[] | null>(null);
   const [albuns, setAlbuns] = useState<Album[] | null>(null);
@@ -76,33 +76,41 @@ export default function SearchInput() {
           className={styles.input}
         />
       </form>
-
-      <section className={styles.results}>
-        {isLoading && <Loading />}
-        {error && <p>{error}</p>}
-        {!isLoading && !error && tracks && artists && albuns && (
-          <>
-            <h1>Músicas</h1>
+      {isLoading && <Loading />}
+      {error && <p>{error}</p>}
+      {!isLoading && !error && tracks && artists && albuns && (
+        <>
+          <section className="showRight">
             {tracks.length <= 0 ? (
-              <p>Nenhuma música encontrada.</p>
+              <>
+                <h1 className={styles.title}>Músicas</h1>
+                <p>Nenhuma música encontrada.</p>
+              </>
             ) : (
-              <MusicList tracks={tracks} cover={null} />
+              <>
+                <h1 className={styles.title}>Músicas</h1>
+                <MusicList tracks={tracks} cover={null} />
+              </>
             )}
-            <h1>Albuns</h1>
-            {albuns.length <= 0 ? (
+          </section>
+          {albuns.length <= 0 ? (
+            <section className="showRight">
+              <h1 className={styles.title}>Albuns</h1>
               <p>Nenhum album encontrado.</p>
-            ) : (
-              <AlbumList albuns={albuns} />
-            )}
-            <h1>Artistas</h1>
-            {artists.length <= 0 ? (
+            </section>
+          ) : (
+            <AlbumList albuns={albuns} />
+          )}
+          {artists.length <= 0 ? (
+            <section className="showRight">
+              <h1 className={styles.title}>Artistas</h1>
               <p>Nenhum artista encontrado.</p>
-            ) : (
-              <ArtistsList artists={artists} />
-            )}
-          </>
-        )}
-      </section>
+            </section>
+          ) : (
+            <ArtistsList artists={artists} />
+          )}
+        </>
+      )}
     </>
   );
 }

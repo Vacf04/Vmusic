@@ -57,10 +57,7 @@ export default function ArtistSection({
         <h1>Mais Escutadas</h1>
         <MusicList tracks={topMusics.data} cover={null} />
       </div>
-      <div className={styles.albuns}>
-        <h1>Albuns</h1>
-        <AlbumList albuns={albuns.data} />
-      </div>
+      <AlbumList albuns={albuns.data} />
     </section>
   );
 }
