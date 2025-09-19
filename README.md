@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vmusic
 
-## Getting Started
+## **Descrição do Projeto**
 
-First, run the development server:
+Trata-se de um aplicativo similar ao spotify para escutar músicas, ver artistas, albuns e afins, utilizando a api do deezer para buscar esses dados, infelizmente a api do deezer só permite a reprodução de 30 segundos de uma música.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## **Preview**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<img width="1858" height="927" alt="Captura de tela de 2025-09-18 21-59-14" src="https://github.com/user-attachments/assets/ec270071-9edf-4b5c-915d-6217f25242ed" />
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## **Tecnologias Utilizadas**
 
-To learn more about Next.js, take a look at the following resources:
+O projeto foi construído utilizando as seguintes tecnologias:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js**
+- **ContextAPI**
+- **CSS Modules**
+- **Swiper**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## **Funcionalidades**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Layout responsivo**
+- **HTML Semântico**
+- **Animações em CSS**
+- **Player de música 100% funcional**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## **Estrutura e Arquitetura**
+
+### **Como pensei o projeto**
+
+- **Next.js e SSR**: Fiz a grande parte dos fetchs no lado do servidor, exceto pela busca, onde usei debounce e fiz o fetch por um client component.
+- **ContextAPI**: Gerenciei o estado principalmente do player e da fila com o contextAPI.
+
+---
+
+## **Instalação e Execução**
+
+Siga os passos abaixo para rodar a aplicação localmente.
+
+### Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- npm (ou yarn)
+
+### 1. Clonar o repositório
+
+`git clone` 
+
+### 2. Instalar as dependências
+
+`npm install`
+
+### 4. Rodar o projeto (Modo de Desenvolvimento)
+
+`npm run dev`
+
+Acesse `http://localhost:3000` no seu navegador.
+
+## **Autor**
+
+**Víttor Franceschi**
+
+- **GitHub**: https://github.com/Vacf04
+- **LinkedIn**: https://www.linkedin.com/in/vittor-franceschi/
