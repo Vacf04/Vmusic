@@ -5,6 +5,7 @@ export default async function topTracksGet(): Promise<Track[] | null> {
   try {
     const response = await fetch(
       `https://api.deezer.com/playlist/3155776842/tracks`,
+      { cache: 'no-store' }, // Adicione esta linha
     );
 
     if (!response.ok) {
